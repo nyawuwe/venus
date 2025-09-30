@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('.carousel');
+
+    function generateCarousel() {
+        paintings.forEach(p => {
+            const item = document.createElement('div');
+            item.className = 'carousel__item glass-container';
+            item.innerHTML = `
+                <div class="art-content" style="background: url('${p.image}')">
+                    <div class="art-content__header">
+                        <button class="art-content__button"><i class="fas fa-arrow-left"></i></button>
+                        <button class="art-content__button art-content__button--expand"><i class="fas fa-up-right-and-down-left-from-center"></i> Expand</button>
+                        <button class="art-content__button"><i class="fas fa-ellipsis-v"></i></button>
+                    </div>
+                    <div class="art-content__details">
+                        <div>
+                            <h2 class="art-content__title">${p.title}</h2>
+                            <p class="art-content__quote">${p.quote}</p>
+                        </div>
+                        <div class="art-content__meta">
+                            <p><span>Medium</span><br>${p.medium}</p>
+                            <p><span>Dimensions</span><br>${p.dimensions}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            carousel.appendChild(item);
+        });
+    }
+
+    generateCarousel();
+
     gsap.set('.top-bar', { yPercent: -120, autoAlpha: 0 });
     gsap.set('.artist-bar', { yPercent: 120, autoAlpha: 0 });
     gsap.set('.side-bar', { xPercent: -120, autoAlpha: 0 });
