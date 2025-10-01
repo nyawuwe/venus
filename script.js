@@ -101,6 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateCarousel(isInitial = false) {
+        const currentPainting = paintings[currentIndex];
+        const artist = artists[currentPainting.artist];
+
+        const artistInfo = document.querySelector('.artist-info');
+        artistInfo.querySelector('.artist-info__img').src = artist.avatar;
+        artistInfo.querySelector('.artist-info__name').textContent = artist.name;
+        artistInfo.querySelector('.artist-info__life').textContent = artist.life;
+
         const numItems = carouselItems.length;
         const duration = isInitial ? 0 : 0.75;
         
